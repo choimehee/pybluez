@@ -9,6 +9,9 @@ $Id: inquiry.py 401 2006-05-05 19:07:48Z albert $
 """
 
 import bluetooth
+import pymongo
+
+client=pymongo.MongoClient("mongodb://yechoi:0000@192.168.1.32:27017/")
 
 print("Performing inquiry...")
 

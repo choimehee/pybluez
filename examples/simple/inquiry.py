@@ -12,6 +12,9 @@ import bluetooth
 import pymongo
 
 client=pymongo.MongoClient("mongodb://yechoi:0000@192.168.1.32:27017/")
+mydb=client["bluetooth"]
+scans=mydb["scans"]
+
 
 print("Performing inquiry...")
 

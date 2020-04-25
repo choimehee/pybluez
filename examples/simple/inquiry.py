@@ -10,11 +10,13 @@ $Id: inquiry.py 401 2006-05-05 19:07:48Z albert $
 
 import bluetooth
 import pymongo
+import collections
 
 client=pymongo.MongoClient("mongodb://yechoi:0000@192.168.1.32:27017/")
 mydb=client["bluetooth"]
 scans=mydb["scans"]
 
+odbcArray=[]
 
 print("Performing inquiry...")
 
@@ -28,3 +30,9 @@ for addr, name in nearby_devices:
         print("   {} - {}".format(addr, name))
     except UnicodeEncodeError:
         print("   {} - {}".format(addr, name.encode("utf-8", "replace")))
+
+for addr, name in nearby_devices:
+    doc=collections.OrderedDict()
+    doc['address']=addr
+    doc['deviceName']=name
+    odbcArray.append(doc)

@@ -11,6 +11,7 @@ $Id: inquiry.py 401 2006-05-05 19:07:48Z albert $
 import bluetooth
 import pymongo
 import collections
+from bson import json_util
 
 client=pymongo.MongoClient("mongodb://yechoi:0000@192.168.1.32:27017/")
 mydb=client["bluetooth"]
@@ -36,3 +37,5 @@ for addr, name in nearby_devices:
     doc['address']=addr
     doc['deviceName']=name
     odbcArray.append(doc)
+
+mongoImp=dbo.insert_many(odbcArray)
